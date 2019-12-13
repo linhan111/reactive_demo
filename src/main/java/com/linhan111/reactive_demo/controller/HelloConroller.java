@@ -24,4 +24,10 @@ public class HelloConroller {
         Thread.sleep(new Random().nextInt(10));
         return Mono.just("Welcome to reactive world ~");
     }
+
+    @GetMapping("/world")
+    public String world() throws InterruptedException {
+        Thread.sleep(new Random().nextInt(200));
+        return "Welcome to the world ~";
+    }
 }

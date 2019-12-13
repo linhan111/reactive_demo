@@ -13,7 +13,15 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ReactiveDemoApplication {
 
+	@Value("${spring.application.name}")
+	private String applicationName;
+
 	public static void main(String[] args) {
 		SpringApplication.run(ReactiveDemoApplication.class, args);
+	}
+
+	@Bean
+	MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
+		return registry -> registry.config().commonTags("application", applicationName);
 	}
 }
