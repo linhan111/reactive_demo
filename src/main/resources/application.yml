@@ -1,0 +1,28 @@
+info:
+    app:
+        name: @project.name@
+        description: @project.description@
+        version: @project.version@
+        encoding: @project.build.sourceEncoding@
+        java:
+            version: @java.version@
+spring:
+    application:
+        name: reactive_demo
+    profiles:
+        active: dev
+
+server:
+    port: 10000
+
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        jmx:
+            exposure:
+                include:
+        web:
+            exposure:
+                include: health,info,env,prometheus,metrics,httptrace,threaddump,heapdump,springmetrics
