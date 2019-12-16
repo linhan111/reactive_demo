@@ -1,0 +1,45 @@
+version: "3.7"
+networks:
+    #
+    monitor:
+        driver: bridge
+
+services:
+    prometheus:
+        tty: true
+        environment:
+            TZ: "Asia/Shanghai"
+        image: prom/prometheus
+        container_name: prometheus
+        command: --config.file=/etc/prometheus/prometheus.yml
+        hostname: prometheus
+        ports:
+            - "9090:9090"
+        networks:
+            - monitor
+        volumes:
+            - /Users/snail/IdeaProjects/Kitematic/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+    node-exporter:
+        tty: true
+        environment:
+            TZ: "Asia/Shanghai"
+        image: prom/node-exporter
+        container_name: node-exporter
+        hostname: node-exporter
+        networks:
+            - monitor
+        ports:
+            - "9100:9100"
+
+    granafa:
+        tty: true
+        environment:
+            TZ: "Asia/Shanghai"
+        image: grafana/grafana
+        container_name: grafana
+        hostname: grafana
+        networks:
+            - monitor
+        ports:
+            - "3000:3000"
