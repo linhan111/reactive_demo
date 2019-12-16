@@ -1,6 +1,6 @@
 version: "3.7"
 networks:
-    #
+    # 为什么这里新建的是monitotr网络，但是docker netwoek ls出来网络名字是prometheus_monitor？
     monitor:
         driver: bridge
 
